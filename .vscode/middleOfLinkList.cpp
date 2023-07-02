@@ -11,24 +11,19 @@ struct Node{
     }
 };
 
-Node *insertPos(Node *head,int pos , int data){
-
-Node *temp=new Node(data);
-if(pos==1){
-    temp->next=head;
-    return temp;
-}
-Node *curr = head;
-for(int i=1;i<=pos-2&&curr!=NULL;i++){
-    curr=curr->next;
-}
-if(curr==NULL)
-return head;
-temp->next=curr->next;
-curr->next=temp;
-return head;                                                                                                        
-
-
+void middleElement(Node *head){
+    if(head==NULL){
+        return;
+    }
+    int count=0;
+    Node *slow=head , *fast=head;
+    while(fast!=NULL&&fast->next!=NULL){
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    cout<<(slow->data)<<endl;
+   
+    
 }
 
 
@@ -38,7 +33,7 @@ int main(){
     head->next->next=new Node(50);
     head->next->next->next=new Node(60);
      head->next->next->next->next=new Node(60);
-    insertPos(head,6,80);
+    middleElement(head);
     Node *curr = head;
     while(curr!=NULL){
         cout<<curr->data<<" ";
